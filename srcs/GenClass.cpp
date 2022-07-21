@@ -30,7 +30,7 @@ void	GenClass::CreateHPP() {
 	hpp << " {\n\tpublic:\n\t\t" + name + "( void );\n";
 	hpp << "\t\t" + name + "( const " + name + " &copy );\n";
 	hpp << "\t\t~" + name + "( void );\n\n";
-	hpp << "\t\t" + name + "\t&operator=( const " + name + " &assign);\n";
+	hpp << "\t\t" + name + "\t&operator=( const " + name + " &assign );\n";
 	hpp << "\n\tprivate:\n\n};\n";
 	hpp.close();
 }
