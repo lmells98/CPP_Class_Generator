@@ -20,18 +20,31 @@ string	CopyValidString(const char *__c) {
 	return (__s);
 }
 
+const string	declareHPP(string name) {
+	size_t	i = 0;
+
+	while (i < name.length())
+	{
+		if (name[i] >= 'a' && name[i] <= 'z')
+			name[i] = name[i] - 32;
+		i++;
+	}
+	return (name.append("_HPP"));
+}
+
 void	GenClass::CreateHPP() {
-	string	name;
+	string	name = GetClassName();
+	string	declare = declareHPP(name);
 	
 	cout << "Creating HPP file" << endl;
-	name = GetClassName();
 	hpp.open(GetClassName().append(".hpp").c_str());
+	hpp << "#ifndef " + declare << std::endl << "# define " + declare << std::endl << std::endl;
 	hpp << "#include <iostream>\n#include <string>\n\n" << "class " + name;
 	hpp << " {\n\tpublic:\n\t\t" + name + "( void );\n";
 	hpp << "\t\t" + name + "( const " + name + " &copy );\n";
 	hpp << "\t\t~" + name + "( void );\n\n";
 	hpp << "\t\t" + name + "\t&operator=( const " + name + " &assign );\n";
-	hpp << "\n\tprivate:\n\n};\n";
+	hpp << "\n\tprivate:\n\n};\n" << std::endl << "#endif" << std::endl;
 	hpp.close();
 }
 
