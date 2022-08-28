@@ -41,9 +41,9 @@ void	GenClass::CreateHPP() {
 	hpp << "#ifndef " + declare << std::endl << "# define " + declare << std::endl << std::endl;
 	hpp << "#include <iostream>\n#include <string>\n\n" << "class " + name;
 	hpp << " {\n\tpublic:\n\t\t" + name + "( void );\n";
-	hpp << "\t\t" + name + "( const " + name + " &copy );\n";
+	hpp << "\t\t" + name + "( const " + name + "& copy );\n";
 	hpp << "\t\t~" + name + "( void );\n\n";
-	hpp << "\t\t" + name + "\t&operator=( const " + name + " &assign );\n";
+	hpp << "\t\t" + name + "\t&operator=( const " + name + "& assign );\n";
 	hpp << "\n\tprivate:\n\n};\n" << std::endl << "#endif" << std::endl;
 	hpp.close();
 }
@@ -64,9 +64,9 @@ void	GenClass::CreateCPP() {
 	cpp.open(GetClassName().append(".cpp").c_str());
 	SetHeaders(&cpp, name);
 	cpp << name + "::" + name + "() {\n\n}\n\n";
-	cpp << name + "::" + name + "(const " + name + " &copy) {\n\n}\n\n";
+	cpp << name + "::" + name + "(const " + name + "& copy) {\n\n}\n\n";
 	cpp << name + "::" + "~"+ name + "() {\n\n}\n\n";
-	cpp << name + "\t&" + name + "::operator=(const " + name + " &assign) {\n\n}\n";
+	cpp << name + "\t&" + name + "::operator=(const " + name + "& assign) {\n\n}\n";
 	cpp.close();
 }
 
