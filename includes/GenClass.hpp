@@ -1,32 +1,27 @@
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <cstring>
 #include <cstdlib>
 
 using namespace	std;
 
-string	CopyValidString(const char *__c);
-
+//	Inherit PathFinder class. (REQUIRES NEW IMPLEMENTATION OF PATHFINDER)
+//
+//	Maybe include another class that scans for source and include paths.
+// 	Class Implementation bc of both flag for check and string for location
+// 	to be able to append the specified 'name' for organised generation.
 class GenClass
 {
 	public:
-		GenClass( void ) {}
-		GenClass( int c, char **v ) {
+		GenClass( const char *v ) {
 			string	option;
 
-			if (c < 2 || c > 3)
-			{
-				cerr<<"Usage: ./GenClass \"Class Name\""<<endl;
-				return ;
-			}
-			ClassName = CopyValidString(v[0]);
+			ClassName = v;
 			if (ClassName.empty())
 			{
-				cerr<<"Class Name Error: `"<<*v<<"': must start with an alhabetical character or un underscore"<<endl;
+				cerr << "Class Name Error: `" << v <<"': must start with an alphabetical character or un underscore\n";
 				return ;
 			}
-			cout<<"Generating " + ClassName<<endl;
+			cout << "Generating Class: " + ClassName + "\n";
 		}
 		~GenClass( void ) {}
 
@@ -39,4 +34,6 @@ class GenClass
 		string		ClassName;
 		ofstream	hpp;
 		ofstream	cpp;
+
+		GenClass( void ) {}
 };
